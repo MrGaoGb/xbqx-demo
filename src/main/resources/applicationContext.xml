@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--单例Bean scope默认singleton-->
+    <bean id="beanScopeSingleModel" class="com.mrgao.demo.service.BeanScopeModel">
+        <!--初始化参数 单例bean：在Spring容器启动的时候会产生唯一一个对象，整个容器中独一份，放置map缓存中存储-->
+        <constructor-arg index="0" name="beanScope" value="singleton"/>
+    </bean>
+
+    <!--多例Bean-->
+    <bean id="beanScopePrototypeModel" class="com.mrgao.demo.service.BeanScopeModel" scope="prototype">
+        <!--多例bean：每次Spring容器获取均会产生一个新的对象-->
+        <constructor-arg index="0" name="beanScope" value="prototype"/>
+    </bean>
+
+    <!--自定义scope-->
+    <bean id="beanScopeCustomModel" class="com.mrgao.demo.service.BeanScopeModel" scope="thread">
+        <!--自定义作用域-->
+        <constructor-arg index="0" name="beanScope" value="thread"/>
+    </bean>
+    <bean id="customizeBeanFactoryPostProcessor" class="com.mrgao.demo.scope.CustomizeBeanFactoryPostProcessor"/>
+</beans>
